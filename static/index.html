@@ -1,0 +1,75 @@
+<!-- static/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ESpeech TTS — Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ESpeech TTS</h1>
+      <p class="muted">Multi-voice Russian speech synthesizer demo</p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>1) Choose a voice</h2>
+        <div id="voices" class="voices-grid" aria-live="polite"></div>
+        <div id="voices-empty" class="info hidden">
+          No voices found. Put folders into <code>voices/</code> with a
+          <code>ref_text.txt</code> and a reference audio file.
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2) Enter text</h2>
+        <textarea id="text" rows="6" placeholder="Введите текст для синтеза..."></textarea>
+
+        <div class="controls">
+          <label>
+            Speed
+            <input type="range" id="speed" min="0.5" max="2.0" step="0.05" value="1.0" />
+            <span id="speedValue">1.0</span>
+          </label>
+
+          <label>
+            Steps
+            <input type="number" id="nfe" min="8" max="128" step="1" value="71" />
+          </label>
+
+          <label>
+            Seed
+            <input type="number" id="seed" value="-1" />
+          </label>
+
+          <label>
+            Format
+            <select id="format">
+              <option value="mp3" selected>MP3</option>
+              <option value="wav">WAV</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="synthesizeBtn" class="primary">Synthesize</button>
+        <div id="status" class="status"></div>
+      </section>
+
+      <section class="panel">
+        <h2>3) Result</h2>
+        <audio id="player" controls preload="none"></audio>
+        <div>
+          <a id="downloadLink" class="button secondary hidden" download>Download audio</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="muted">Tip: first run may take a while as models download & load.</p>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
