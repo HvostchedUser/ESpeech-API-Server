@@ -247,7 +247,7 @@ async def synthesize_stream(req: SynthesisRequest):
         seed=req.seed,
     )
 
-    from .tts import stream_audio_bytes
+    from tts import stream_audio_bytes
     mime = "audio/wav" if req.format == "wav" else "audio/mpeg"
     filename = f"{voice.id}_stream.{ 'wav' if req.format == 'wav' else 'mp3' }"
 
